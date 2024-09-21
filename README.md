@@ -15,15 +15,17 @@ On windows:
 ## Getting Started
 
 1. Clone this directory into a new one. If you are copying by hand, remember to exclude / remove the `.venv` folder in your new project.
-2. Open terminal at this directory, run the following and follow the prompt:
+2. Install dependencies, filter groups as necessary:
     ```bash
-    poetry init
+    poetry install --with dev
     ```
-3. Add necessary "development" dependencies. This may take a minute:
-    ```bash
-    poetry add jupyter ipykernel --group dev
-    ```
-    Note: "Development" dependency is one that only used for development purposes and not strictly essential to the reproduction of the project.
+
+    Groups:
+    - `dev`: `numpy`, `plotly`, `polars`
+    - `jupyter`: necessary for Jupyter Notebook
+    - `legacy`: `pandas`, `seaborn`, `pyarrow`
+
+    Use the cli options `--with <group_name>` or `--without <group_name>` as necessary  (see [Install Options](https://python-poetry.org/docs/cli/#options-2)).
 
 ## Activate Jupyter Notebook Kernel in VSCode
 
@@ -36,10 +38,10 @@ To activate the kernel, open any `.ipynb` file, click on the kernel name on the 
 Whenever you need to add a new package to the project, run
 
 ```bash
-poetry add <pacakge_name>
+poetry add <pacakge_name> --group <group_name>
 ```
 
-For example, `poetry add pandas` will add `pandas` to the project. For more information, consult the [Poetry Documentation](https://python-poetry.org/docs/managing-dependencies/).
+For example, `poetry add pandas` will add `pandas` to the project. For more information, consult the [Poetry Documentation](https://python-poetry.org/docs/managing-dependencies/). Remember to add to the correct group if necessary.
 
 ## Reproduce the Project Environment
 
